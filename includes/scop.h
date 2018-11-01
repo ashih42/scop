@@ -6,7 +6,7 @@
 /*   By: ashih <ashih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 23:04:31 by ashih             #+#    #+#             */
-/*   Updated: 2018/10/29 09:58:43 by ashih            ###   ########.fr       */
+/*   Updated: 2018/10/30 09:25:50 by ashih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@
 
 # define PERCENT_TEX_INC	0.01f
 
-# define NUM_TEXTURES		5
+# define NUM_TEXTURES		6
 # define TEX_FILE_0			"textures/doge_rainbow.ppm"
 # define TEX_FILE_1			"textures/kitten.ppm"
 # define TEX_FILE_2			"textures/ponies.ppm"
 # define TEX_FILE_3			"textures/unicorn.ppm"
 # define TEX_FILE_4			"textures/scop.ppm"
+# define TEX_FILE_5			"textures/mlu.ppm"
 
 # define INVALID_VT			-1
 # define INVALID_VN			-1
@@ -169,13 +170,7 @@ typedef struct				s_master
 /*
 ** copy_triangles_to_gl_data.c
 */
-
-t_vec3	*get_v(t_obj *obj, int v_index);
-t_vec2	*get_vt(t_obj *obj, int vt_index);
-t_vec3	*get_vn(t_obj *obj, int vn_index);
-
-int							copy_triangles_to_gl_data(
-	t_master *m, t_obj *obj, t_list *triangle_list);
+int							copy_triangles_to_gl_data(t_master *m, t_obj *obj, t_list *triangle_list);
 
 
 /*
@@ -197,8 +192,7 @@ t_vec3						generate_normal(t_vec3 *v1, t_vec3 *v2, t_vec3 *v3);
 /*
 ** get_triangle_point_v_vt_vn_str.c
 */
-int							get_triangle_point_v_vt_vn_str(
-	char *str, char **v_str, char **vt_str, char **vn_str);
+int							get_triangle_point_v_vt_vn_str(char *str, char **v_str, char **vt_str, char **vn_str);
 
 /*
 ** handle_f_line.c
@@ -249,8 +243,7 @@ int							init_vertex_objects(t_master *m);
 ** key_callback.c
 */
 void						reset_scop_params(t_master *m);
-void						key_callback(
-	GLFWwindow *window, int key, int scancode, int action, int mods);
+void						key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
 
 /*
 ** light_position_dec.c
@@ -278,16 +271,11 @@ void						init_perspective_projection_matrix(float m[4][4]);
 /*
 ** matrix_operations_2.c
 */
-void						init_scaling_matrix(
-	float m[4][4], float scale_x, float scale_y, float scale_z);
-void						init_translation_matrix(
-	float m[4][4], float translate_x, float translate_y, float translate_z);
-void						init_rotation_x_matrix(
-	float m[4][4], float radians);
-void						init_rotation_y_matrix(
-	float m[4][4], float radians);
-void						init_rotation_z_matrix(
-	float m[4][4], float radians);
+void						init_scaling_matrix(float m[4][4], float scale_x, float scale_y, float scale_z);
+void						init_translation_matrix(float m[4][4], float translate_x, float translate_y, float translate_z);
+void						init_rotation_x_matrix(float m[4][4], float radians);
+void						init_rotation_y_matrix(float m[4][4], float radians);
+void						init_rotation_z_matrix(float m[4][4], float radians);
 
 /*
 ** parse_obj_file.c
@@ -297,8 +285,7 @@ int							parse_obj_file(char *filename, t_obj *obj);
 /*
 ** parse_ppm_file.c
 */
-unsigned char				*parse_ppm_file(
-	char *path, char *filename, int *width, int *height);
+unsigned char				*parse_ppm_file(char *path, char *filename, int *width, int *height);
 
 /*
 ** percent_texture.c

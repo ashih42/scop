@@ -6,7 +6,7 @@
 /*   By: ashih <ashih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 23:04:53 by ashih             #+#    #+#             */
-/*   Updated: 2018/10/29 09:46:07 by ashih            ###   ########.fr       */
+/*   Updated: 2018/10/30 09:24:33 by ashih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ int				main(int argc, char **argv)
 		!init_open_gl(&m) && !init_shaders(&m) &&
 		!init_vertex_objects(&m) && !init_textures(&m))
 	{
-
-		// print_triangles(&m.obj);
-
 		reset_scop_params(&m);
 		loop(&m);
 	}

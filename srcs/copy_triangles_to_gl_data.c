@@ -6,7 +6,7 @@
 /*   By: ashih <ashih@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 22:00:03 by ashih             #+#    #+#             */
-/*   Updated: 2018/10/29 09:31:20 by ashih            ###   ########.fr       */
+/*   Updated: 2018/10/30 09:27:48 by ashih            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void		copy_triangle_point_to_gl_data(
 	gl_data[13] = (vn) ? vn->z : 0.0f;
 }
 
-t_vec3	*get_v(t_obj *obj, int v_index)
+static t_vec3	*get_v(t_obj *obj, int v_index)
 {
 	return (&obj->v_array[v_index - 1]);
 }
 
-t_vec2	*get_vt(t_obj *obj, int vt_index)
+static t_vec2	*get_vt(t_obj *obj, int vt_index)
 {
 	if (vt_index == INVALID_VT)
 		return (NULL);
@@ -54,7 +54,7 @@ t_vec2	*get_vt(t_obj *obj, int vt_index)
 		return (&obj->vt_array[vt_index - 1]);
 }
 
-t_vec3	*get_vn(t_obj *obj, int vn_index)	// USE THIS
+static t_vec3	*get_vn(t_obj *obj, int vn_index)	// USE THIS
 {
 	if (vn_index == INVALID_VN)
 		return (NULL);
