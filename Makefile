@@ -3,14 +3,18 @@ CC = gcc
 TARGET = scop
 
 # GLAD build obtained from https://glad.dav1d.de/
-GLAD_LOC := ./GLAD
-GLAD_INC := $(GLAD_LOC)/include
-GLAD_SRC := $(GLAD_LOC)/src
-GLAD_TARGET := $(GLAD_LOC)/glad.o
+# GLAD_LOC := ./GLAD
+# GLAD_INC := $(GLAD_LOC)/include
+# GLAD_SRC := $(GLAD_LOC)/src
+# GLAD_TARGET := $(GLAD_LOC)/glad.o
 
 GLFW_LOC := $(shell brew --prefix glfw)
 GLFW_INC := $(GLFW_LOC)/include
 GLFW_LINK := -L $(GLFW_LOC)/lib -lglfw
+
+GLEW_LOC := $(shell brew --prefix glew)
+GLEW_INC := $(GLEW_LOC)/include/
+GLEW_LINK := -L $(GLEW_LOC)/lib/ -lGLEW
 
 LIBFT := libft
 LIBFT_INC := $(LIBFT)/includes
@@ -19,7 +23,8 @@ LIBFT_LIB := $(LIBFT)/libft.a
 CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 
 INCLUDES = includes/
-HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLAD_INC)
+# HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLAD_INC)
+HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLEW_INC)
 
 SRCDIR = srcs/
 SRCS = \
@@ -84,7 +89,8 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 
 $(TARGET): $(OBJS)
 	@echo "\x1b[1mBuilding $(TARGET)...\x1b[0m"
-	$(CC) -o $(TARGET) $(OBJS) $(GLAD_TARGET) -L$(LIBFT) -lft $(GLFW_LINK) #-fsanitize=address
+	# $(CC) -o $(TARGET) $(OBJS) $(GLAD_TARGET) -L$(LIBFT) -lft $(GLFW_LINK) #-fsanitize=address
+	$(CC) -o $(TARGET) $(OBJS) -L$(LIBFT) -lft $(GLFW_LINK) $(GLEW_LINK) -framework OpenGL #-fsanitize=address
 	@echo "\x1b[1mBuild finished!!\x1b[0m"
 
 clean:

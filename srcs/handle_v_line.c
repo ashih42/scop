@@ -60,6 +60,16 @@ static int		parse_v_xyz(char **tokens, t_obj *obj)
 		ft_atodbl_check(tokens[2], &y) ||
 		ft_atodbl_check(tokens[3], &z))
 		return (-1);
+
+	// float		x;
+	// float		y;
+	// float		z;
+	// if (ft_char_array_length(tokens) != 4)
+	// 	return (-1);
+	// scanf("%f", &x);
+	// scanf("%f", &y);
+	// scanf("%f", &z);
+
 	vertex = (t_vec3){(float)x, (float)y, (float)z};
 	update_obj_min_max(obj, &vertex);
 	ft_lstadd(&obj->v_list, ft_lstnew(&vertex, sizeof(t_vec3)));

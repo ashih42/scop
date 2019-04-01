@@ -66,15 +66,17 @@ int					init_open_gl(t_master *m)
 	if (!(m->window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT,
 		"Scop", NULL, NULL)))
 		return (ft_puterror(ERROR_MEMORY, NULL, -1));
+	glfwMakeContextCurrent(m->window);
+	if (glewInit() != GLEW_OK)											// using GLEW now instead of GLAD
+		return (ft_puterror("glewInit() failed", NULL, -1));
 	glfwSetWindowUserPointer(m->window, m);
 	glfwSetWindowAspectRatio(m->window, SCREEN_WIDTH, SCREEN_HEIGHT);
-	glfwMakeContextCurrent(m->window);
 	glfwSetFramebufferSizeCallback(m->window, framebuffer_size_callback);
 	glfwSetKeyCallback(m->window, key_callback);
 	glfwSetCursorPosCallback(m->window, cursor_position_callback);
 	glfwSetScrollCallback(m->window, scroll_callback);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		return (ft_puterror("gladLoadGLLoader() failed", NULL, -1));
+	// if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	// 	return (ft_puterror("gladLoadGLLoader() failed", NULL, -1));
 	glEnable(GL_DEPTH_TEST);
 	return (0);
 }
