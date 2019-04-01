@@ -2,12 +2,6 @@ CC = gcc
 
 TARGET = scop
 
-# GLAD build obtained from https://glad.dav1d.de/
-# GLAD_LOC := ./GLAD
-# GLAD_INC := $(GLAD_LOC)/include
-# GLAD_SRC := $(GLAD_LOC)/src
-# GLAD_TARGET := $(GLAD_LOC)/glad.o
-
 GLFW_LOC := $(shell brew --prefix glfw)
 GLFW_INC := $(GLFW_LOC)/include
 GLFW_LINK := -L $(GLFW_LOC)/lib -lglfw
@@ -23,7 +17,6 @@ LIBFT_LIB := $(LIBFT)/libft.a
 CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 
 INCLUDES = includes/
-# HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLAD_INC)
 HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLEW_INC)
 
 SRCDIR = srcs/
@@ -65,7 +58,6 @@ translate_inc.c \
 OBJDIR = objs/
 OBJS = $(addprefix $(OBJDIR), $(SRCS:.c=.o))
 
-# all: glfw $(LIBFT_LIB) $(GLAD_TARGET) $(TARGET)
 all: $(LIBFT_LIB) $(GLAD_TARGET) $(TARGET)
 
 glfw:
@@ -78,31 +70,25 @@ $(LIBFT_LIB):
 	@make -C $(LIBFT)
 	@echo
 
-$(GLAD_TARGET):
-	@echo "\x1b[1mBuilding $(GLAD_TARGET)...\x1b[0m"
-	gcc $(GLAD_SRC)/glad.c -c -I $(GLAD_INC)
-	mv glad.o $(GLAD_LOC)
-
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@mkdir -p $(OBJDIR)
 	$(CC) -c $(CFLAGS) $(HEADERS) $< -o $@
 
 $(TARGET): $(OBJS)
 	@echo "\x1b[1mBuilding $(TARGET)...\x1b[0m"
-	# $(CC) -o $(TARGET) $(OBJS) $(GLAD_TARGET) -L$(LIBFT) -lft $(GLFW_LINK) #-fsanitize=address
 	$(CC) -o $(TARGET) $(OBJS) -L$(LIBFT) -lft $(GLFW_LINK) $(GLEW_LINK) -framework OpenGL #-fsanitize=address
 	@echo "\x1b[1mBuild finished!!\x1b[0m"
 
 clean:
 	@echo "\x1b[1mCleaning...\x1b[0m"
-#	make -C $(LIBFT) clean
+	make -C $(LIBFT) clean
 	/bin/rm -rf $(OBJDIR)
 	@echo
 
 fclean: clean
 	@echo "\x1b[1mFcleaning...\x1b[0m"
 	/bin/rm -f $(TARGET)
-#	/bin/rm -f $(LIBFT_LIB)
+	/bin/rm -f $(LIBFT_LIB)
 	/bin/rm -f $(GLAD_TARGET)
 	@echo
 

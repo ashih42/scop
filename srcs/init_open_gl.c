@@ -55,10 +55,18 @@ static void			framebuffer_size_callback(
 	(void)window;
 }
 
+/*
+** Need to cache and store current working directory
+** because glfwInit() changes cwd ¯\_(ツ)_/¯
+*/
 int					init_open_gl(t_master *m)
 {
+	char			cwd[256];
+
+	getcwd(cwd, sizeof(cwd));
 	if (glfwInit() == GLFW_FALSE)
 		return (ft_puterror("glfwInit() failed", NULL, -1));
+	chdir(cwd);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -75,8 +83,6 @@ int					init_open_gl(t_master *m)
 	glfwSetKeyCallback(m->window, key_callback);
 	glfwSetCursorPosCallback(m->window, cursor_position_callback);
 	glfwSetScrollCallback(m->window, scroll_callback);
-	// if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	// 	return (ft_puterror("gladLoadGLLoader() failed", NULL, -1));
 	glEnable(GL_DEPTH_TEST);
 	return (0);
 }
