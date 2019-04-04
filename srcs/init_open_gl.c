@@ -55,18 +55,10 @@ static void			framebuffer_size_callback(
 	(void)window;
 }
 
-/*
-** Need to cache and store current working directory
-** because glfwInit() changes cwd ¯\_(ツ)_/¯
-*/
 int					init_open_gl(t_master *m)
 {
-	char			cwd[256];
-
-	getcwd(cwd, sizeof(cwd));
 	if (glfwInit() == GLFW_FALSE)
 		return (ft_puterror("glfwInit() failed", NULL, -1));
-	chdir(cwd);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
