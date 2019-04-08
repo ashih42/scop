@@ -79,7 +79,7 @@ You are on macOS with `gcc` and `make` installed.
 
 #### Light Controls
 
-* `L` Toggle light source and shading.
+* `L` Toggle light source and shading on/off.
 * `N` Use triangle-generated or given surface normals.
 * `Left Alt` + `Numpad 7` Move light position toward +X-axis.
 * `Left Alt` + `Numpad 8` Move light position toward -X-axis.
