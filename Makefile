@@ -14,13 +14,13 @@ LIBFT := libft
 LIBFT_INC := $(LIBFT)/includes
 LIBFT_LIB := $(LIBFT)/libft.a
 
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS := -Wall -Werror -Wextra #-g -fsanitize=address
 
-INCLUDES = includes/
-HEADERS = -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLEW_INC)
+INCLUDES := includes/
+HEADERS := -I $(INCLUDES) -I $(LIBFT_INC) -I $(GLFW_INC) -I $(GLEW_INC)
 
-SRCDIR = srcs/
-SRCS = \
+SRCDIR := srcs/
+SRCS := \
 copy_triangles_to_gl_data.c \
 debug.c \
 generate_gl_data.c \
@@ -55,15 +55,10 @@ toggles.c \
 translate_dec.c \
 translate_inc.c \
 
-OBJDIR = objs/
-OBJS = $(addprefix $(OBJDIR), $(SRCS:.c=.o))
+OBJDIR := objs/
+OBJS := $(addprefix $(OBJDIR), $(SRCS:.c=.o))
 
-all: $(LIBFT_LIB) $(GLAD_TARGET) $(TARGET)
-
-glfw:
-	@echo "\x1b[1mInstalling GLFW library...\x1b[0m"
-	@HOMEBREW_NO_AUTO_UPDATE=1 brew install glfw
-	@echo
+all: $(LIBFT_LIB) $(TARGET)
 
 $(LIBFT_LIB):
 	@echo "\x1b[1mBuilding $(LIBFT) library...\x1b[0m"
@@ -89,9 +84,8 @@ fclean: clean
 	@echo "\x1b[1mFcleaning...\x1b[0m"
 	/bin/rm -f $(TARGET)
 	/bin/rm -f $(LIBFT_LIB)
-	/bin/rm -f $(GLAD_TARGET)
 	@echo
 
 re: fclean all
 
-.PHONY: all clean fclean re glfw
+.PHONY: all clean fclean re
