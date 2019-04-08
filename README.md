@@ -10,7 +10,7 @@ Render Wavefront .obj 3D models in C using OpenGL. (42 Silicon Valley)
 
 ## Prerequisites
 
-You are on macOS with `gcc` and `make` installed.
+You are on macOS with `gcc`, `make`, and `brew` installed.
 
 ## Installing
 
