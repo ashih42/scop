@@ -2,6 +2,12 @@
 
 Render Wavefront .obj 3D models in C using OpenGL. (42 Silicon Valley)
 
+<p float="left">
+  <img src="https://github.com/ashih42/scop/blob/master/Screenshots/spider.png" width="280" />
+  <img src="https://github.com/ashih42/scop/blob/master/Screenshots/cheese.png" width="280" />
+  <img src="https://github.com/ashih42/scop/blob/master/Screenshots/horse.png" width="280" />
+</p>
+
 ## Prerequisites
 
 You are on macOS with `gcc` and `make` installed.
@@ -74,6 +80,7 @@ You are on macOS with `gcc` and `make` installed.
 #### Light Controls
 
 * `L` Toggle light source and shading.
+* `N` Use triangle-generated or given surface normals.
 * `Left Alt` + `Numpad 7` Move light position toward +X-axis.
 * `Left Alt` + `Numpad 8` Move light position toward -X-axis.
 * `Left Alt` + `Numpad 4` Move light position toward +Y-axis.
